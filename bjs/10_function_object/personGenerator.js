@@ -39,12 +39,22 @@ const personGenerator = {
     GENDER_MALE: 'Мужчина',
     GENDER_FEMALE: 'Женщина',
 
+    randomGender: function () {
+        return Math.floor(Math.random()*2) === 1 ? this.GENDER_MALE : this.GENDER_FEMALE;
+    },
+
     randomIntNumber: (max = 1, min = 0) => Math.floor(Math.random() * (max - min + 1) + min),
 
     randomValue: function (json) {
         const obj = JSON.parse(json);
         const prop = `id_${this.randomIntNumber(obj.count, 1)}`;  // this = personGenerator
         return obj.list[prop];
+    },
+
+    randombirthYear: function (min, max){
+        min = 1999
+        max = 2020
+        return Math.floor(Math.random()*(max - min + 1)) + min;
     },
 
     randomFirstName: function() {
@@ -66,6 +76,8 @@ const personGenerator = {
         // this.person.gender = this.randomGender();
         this.person.surname = this.randomSurname();
         this.person.firstName = this.randomFirstName();
+        this.person.Gender = this.randomGender();
+        this.person.birthYear = this.randombirthYear();
         return this.person;
     }
 };
